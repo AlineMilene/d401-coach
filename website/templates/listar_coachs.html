@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% block content %}
 
+<p>{{msg}}</p>
     <marquee><h1>Listas de suas frases perfeitas</h1></marquee>
     {% for item in listar_coachs %} 
     <p><strong>Nome do Coach:</strong>{{item.nome}}</p>

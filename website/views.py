@@ -18,13 +18,20 @@ def index(request):
 
 def listar_coachs(request):
     listar_coachs = Coach.objects.filter(ativo=True).all()
-    args = {
-        'listar_coachs': listar_coachs
-    }
+    
+    agrs = None
+    if listar_coachs.first() is None:
+        args = {
+            'msg': 'ops, não tem ninguem aqui'
+        }
+    else:
+        args = {
+            'listar_coachs': listar_coachs
+        }
     return render(request, 'listar_coachs.html', args)
 
 def delete_coach(request, id):
-    item = Coach.objects.get(id=id)
+    item = Coach.objects.filter(id=id).first()
     if item is not None:
         item.ativo = False
         item.save()
